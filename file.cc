@@ -1,6 +1,9 @@
 // Copyright 2015 The Chromium OS Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
+// Changes from Qualcomm Innovation Center are provided under the following license:
+// Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+// SPDX-License-Identifier: BSD-3-Clause-Clear
 
 #include "file.h"
 
@@ -13,11 +16,20 @@
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <limits>
 #include <unistd.h>
 
+#ifdef USE_MUSL
+#define typeof(x) __typeof__(x)
 // TEMP_FAILURE_RETRY is defined by some versions of <unistd.h>.
 #ifndef TEMP_FAILURE_RETRY
-#include <utils/Compat.h>
+#define TEMP_FAILURE_RETRY(exp) ({         \
+    typeof (exp) _rc;                      \
+    do {                                   \
+         _rc = (exp);                      \
+    } while (_rc == -1 && errno == EINTR); \
+    _rc; })
+#endif
 #endif
 
 #include <algorithm>

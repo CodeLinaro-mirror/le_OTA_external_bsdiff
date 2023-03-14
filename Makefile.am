@@ -1,5 +1,7 @@
 ACLOCAL_AMFLAGS = -I m4
 
+WORKSPACE := $(TOPDIR)/src
+
 AM_CPPFLAGS := \
               -I. \
               -I$(WORKSPACE)/OTA/external/libdivsufsort/android_include \
