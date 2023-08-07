@@ -6,6 +6,7 @@ AM_CPPFLAGS := \
               -I. \
               -I$(WORKSPACE)/OTA/external/libdivsufsort/android_include \
               -D_FILE_OFFSET_BITS=64 \
+              -DUSE_MUSL \
               -std=c++11
 
 bsdiff_SOURCES := bsdiff.cc bsdiff_main.cc
