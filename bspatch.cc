@@ -155,7 +155,7 @@ int bspatch(
   BZFILE* cpfbz2, *dpfbz2, *epfbz2;
   int bz2err;
   ssize_t bzctrllen, bzdatalen;
-  u_char header[32], buf[8];
+  u_char header[32], buf[8]={};
   off_t ctrl[3];
 
   int using_extents = (old_extents != NULL || new_extents != NULL);
