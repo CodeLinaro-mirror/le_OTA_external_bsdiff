@@ -14,6 +14,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <limits>
 
 // TEMP_FAILURE_RETRY is defined by some versions of <unistd.h>.
 #ifndef TEMP_FAILURE_RETRY
